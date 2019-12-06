@@ -1,9 +1,52 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Agua Gold
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+<ion-segment  [(ngModel)]="segment">
+<ion-segment-button value="cliente">
+<ion-label>Buscar Cliente</ion-label>
+
+</ion-segment-button>
+<ion-segment-button value="nuevo">
+  <ion-label>Nuevo Cliente</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+
+<div [ngSwitch]="segment">
+  <div *ngSwitchCase="'cliente'">
+      <ion-item>
+            <ion-label position="stacked">Dirección</ion-label>
+            <ion-input placeholder="Dirección" id="direccion" #direccion></ion-input>
+          </ion-item>
+
+          <ion-list>
+            <ion-item *ngFor="let c of clients | async" (click)="ventaCliente(c.id)">
+              <ion-label>
+                <h2>{{c.calle+" "+c.numero+" "+c.extra}}</h2>
+                <h3>{{c.nombre+" "+c.apellido}}</h3>
+              </ion-label>
+
+
+            </ion-item>
+            </ion-list>
+
+          <div class="ion-padding">
+  <ion-button expand="block" type="submit" class="ion-no-margin" (click)="buscarDireccion(direccion.value)">Buscar</ion-button>
+</div>
+  </div>
+  <div *ngSwitchCase="'nuevo'">
+    <ion-label>NUEVO</ion-label>
+  </div>
+
+
+
+  </div>
+
+
+</ion-content>

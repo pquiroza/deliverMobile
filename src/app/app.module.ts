@@ -1,18 +1,44 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
-
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import { IonicStorageModule } from '@ionic/storage';
+import { RouterModule, RouteReuseStrategy } from '@angular/router';
 
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+
+
+import { LoginPage } from './login/login.page';
+import { ListaproductosPage } from './listaproductos/listaproductos.page';
+import * as firebase from 'firebase';
+
+
+
+firebase.initializeApp(environment.firebase);
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  declarations: [AppComponent,
+    LoginPage, ListaproductosPage
+  ],
+  entryComponents: [LoginPage, ListaproductosPage],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+     IonicStorageModule.forRoot(),
+  AngularFireModule.initializeApp(environment.firebase),
+  AngularFirestoreModule,
+  AngularFireAuthModule,
+  AngularFireStorageModule,
+  AgmCoreModule.forRoot({
+    apiKey: 'AIzaSyD1ZKWPIHOI5_HuVAKNIjK7J-_6g7EzGvM'
+  })
+],
   providers: [
     StatusBar,
     SplashScreen,

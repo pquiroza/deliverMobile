@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nuevo Pedido</ion-title>
+  </ion-toolbar>
+
+
+</ion-header>
+<ion-content>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>
+    Venta Productos Cliente: {{client.calle+" "+client.numero+" "+client.extra}}
+  </ion-card-title>
+    <ion-card-subtitle>
+      Cliente: {{client.nombre+" "+client.apellido}}
+      </ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-label>
+      Productos
+      </ion-label>
+      <ion-button (click)="agregarProducto(client.id)">
+        <ion-icon size="small" slot="icon-only" name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-card-content>
+
+    <ion-list>
+      <ion-item *ngFor="let p of productsCarro | async">
+        <ion-label><h2>{{p.nombreproducto}}</h2>
+        <h3>{{p.cantidad}}</h3>
+        </ion-label>
+
+        </ion-item>
+      </ion-list>
+
+
+  </ion-card>
+
+  <ion-button expand="block" (click)="finalizaPedido(client)">Finalizar Pedido</ion-button>
+
+</ion-content>

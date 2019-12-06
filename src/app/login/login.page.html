@@ -1,0 +1,17 @@
+<ion-content>
+  <ion-img [src]="'/assets/logo-aguas-gold.png'" padding-vertical>
+
+    </ion-img >
+    <ion-item>
+      <ion-label position="stacked">Patente <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required type="text" id="patente" #patente></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Password <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required type="password" id="password" #password></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="login(patente.value,password.value)">Ingresar</ion-button>
+
+</ion-content>
