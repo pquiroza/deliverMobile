@@ -38,7 +38,7 @@ firebase.initializeApp(environment.firebase);
   AngularFireAuthModule,
   AngularFireStorageModule,
   AgmCoreModule.forRoot({
-    apiKey: 'AIzaSyD1ZKWPIHOI5_HuVAKNIjK7J-_6g7EzGvM'
+    apiKey: ''
   }),
   AgmDirectionModule
 ],
