@@ -1,8 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Agua Gold
-    </ion-title>
+Nuevos Pedidos    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -19,7 +18,7 @@
 
 
 <div [ngSwitch]="segment">
-  <div *ngSwitchCase="'cliente'">
+  <div  *ngSwitchDefault>
       <ion-item>
             <ion-label position="stacked">Dirección</ion-label>
             <ion-input placeholder="Dirección" id="direccion" #direccion></ion-input>
@@ -41,7 +40,59 @@
 </div>
   </div>
   <div *ngSwitchCase="'nuevo'">
-    <ion-label>NUEVO</ion-label>
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input placeholder="Nombre Cliente" id="nombre" #nombre></ion-input>
+
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Apellido</ion-label>
+        <ion-input placeholder="Apellido Cliente" id="apellido" #apellido></ion-input>
+
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Rut</ion-label>
+          <ion-input placeholder="12345678-9" id="rut" #rut></ion-input>
+
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Telefono</ion-label>
+            <ion-input placeholder="+56923456789" id="telefono" #telefono></ion-input>
+
+            </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input placeholder="juanperez@gmail.com" id="email" #email></ion-input>
+
+            </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Calle</ion-label>
+          <ion-input placeholder="Calle" id="calle" #calle></ion-input>
+
+          </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Número</ion-label>
+              <ion-input placeholder="#123" id="numero" #numero></ion-input>
+
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Extra</ion-label>
+                <ion-input placeholder="#Depto 1" id="extra" #extra></ion-input>
+
+                </ion-item>
+                <ion-item>
+
+                  <ion-label position="stacked">Comuna</ion-label>
+                  <ion-select okText="OK" cancelText="Cancelar" id="comuna"#comuna >
+                    <ion-select-option value="San Miguel">San Miguel</ion-select-option>
+                    <ion-select-option value="La Florida">La Florida</ion-select-option>
+                    <ion-select-option value="Puente Alto">Puente Alto</ion-select-option>
+
+                    </ion-select>
+                  </ion-item>
+                  <ion-button expand="block" type="submit" class="ion-no-margin" (click)="guardaCliente(nombre.value,apellido.value,rut.value,telefono.value,email.value,calle.value,numero.value,extra.value,comuna.value)">Buscar</ion-button>
+
   </div>
 
 

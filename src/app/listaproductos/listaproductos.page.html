@@ -26,8 +26,8 @@
   </ion-item>
   <ion-item>
   <ion-select #producto interface="action-sheet" (ionChange)="selecciona($event)" >
-    <ion-select-option *ngFor="let p of products | async" [value]="p.id">
-{{p.nombreProducto+" "+p.precio}}
+    <ion-select-option *ngFor="let p of products | async" [value]="p.idproducto">
+{{p.nombreproducto+" $"+p.precio+"  stock: "+p.cantidad}}
     </ion-select-option>
     </ion-select>
   </ion-item>

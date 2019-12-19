@@ -5,7 +5,9 @@ const routes: Routes = [
   { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
   { path: 'detallepedido', loadChildren: './detallepedido/detallepedido.module#DetallepedidoPageModule' },
   { path: 'nuevopedido', loadChildren: './nuevopedido/nuevopedido.module#NuevopedidoPageModule' },
-  { path: 'listaproductos', loadChildren: './listaproductos/listaproductos.module#ListaproductosPageModule' }
+  { path: 'listaproductos', loadChildren: './listaproductos/listaproductos.module#ListaproductosPageModule' },
+  { path: 'tab4', loadChildren: './tab4/tab4.module#Tab4PageModule' },
+  { path: 'ruta', loadChildren: './ruta/ruta.module#RutaPageModule' }
 ];
 
 

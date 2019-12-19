@@ -22,13 +22,20 @@
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
     "@ionic-native/core": "^5.0.0",
-    "@ionic-native/firebase": "^5.0.0-beta.21",
+    "@ionic-native/fcm": "^5.18.0",
+    "@ionic-native/firebase": "^5.18.0",
+    "@ionic-native/geolocation": "^5.18.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.7.1",
     "@ionic/storage": "^2.2.0",
-    "cordova-ios": "5.0.1",
-    "cordova-plugin-firebase": "^2.0.5",
+    "agm-direction": "^0.7.9",
+    "cordova-android": "^8.1.0",
+    "cordova-plugin-androidx": "^1.0.2",
+    "cordova-plugin-androidx-adapter": "^1.1.0",
+    "cordova-plugin-fcm-with-dependecy-updated": "^4.1.1",
+    "cordova-plugin-firebasex": "^7.0.1",
+    "cordova-plugin-geolocation": "^4.0.2",
     "cordova-sqlite-storage": "^3.4.0",
     "core-js": "^2.5.4",
     "firebase": "^7.3.0",
@@ -50,6 +57,12 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-ionic-keyboard": "^2.2.0",
+    "cordova-plugin-ionic-webview": "^4.1.3",
+    "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-plugin-statusbar": "^2.4.2",
+    "cordova-plugin-whitelist": "^1.3.3",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -65,8 +78,23 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-firebase": {},
-      "cordova-sqlite-storage": {}
-    }
+      "cordova-sqlite-storage": {},
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-fcm-with-dependecy-updated": {},
+      "cordova-plugin-firebasex": {},
+      "cordova-plugin-androidx": {},
+      "cordova-plugin-androidx-adapter": {},
+      "cordova-plugin-geolocation": {}
+    },
+    "platforms": [
+      "android"
+    ]
   }
 }

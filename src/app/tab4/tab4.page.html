@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Configuración</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-card>
+    <ion-card-header>
+<ion-card-subtitle>
+  Información de Vehículo
+  </ion-card-subtitle>
+  <ion-card-title>
+  Patente:  {{movil.patente}}
+    </ion-card-title>
+  </ion-card-header>
+<ion-card-content>
+<ion-item>
+<ion-label>{{movil.marca+" "+movil.modelo+" "+movil.year}}</ion-label>
+  </ion-item>
+  </ion-card-content>
+    </ion-card>
+<ion-item>
+  <ion-label>Disponibilidad</ion-label>
+  <ion-toggle slot="end" #disponibilidad id="disponibilidad" (ionChange)="cambiaDisponibilidad(disponibilidad.checked)"></ion-toggle>
+  </ion-item>
+</ion-content>

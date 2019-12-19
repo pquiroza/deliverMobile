@@ -7,8 +7,8 @@
 </ion-header>
 
 <ion-content>
-  <agm-map [latitude]="-33.492246" [longitude]="-70.651889" [zoom]="15">
-<agm-marker [latitude]="-33.492246" [longitude]="-70.651889"  [iconUrl]="{
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
+<agm-marker [latitude]="lat" [longitude]="lng"  [iconUrl]="{
   url: './assets/icon/truck.png',
   scaledSize: {
         width: 40,
@@ -22,6 +22,9 @@ Nombre: {{p.nombre+" "+p.apellido}}
 <ion-chip (click)="detallePedido(p.id)">
   <ion-label>Ver Pedido</ion-label>
 </ion-chip>
+<ion-chip (click)="rutaPedido(p.id)">
+  <ion-label>Ver Ruta</ion-label>
+  </ion-chip>
 
 
  </agm-info-window>

@@ -12,10 +12,15 @@ import { GoogleMapsAPIWrapper } from '@agm/core/services';
 
 import { Pedidofinal } from '../pedidofinal';
 import { Productospedido } from '../productospedido';
-
+import { Movilcarga } from '../movilcarga';
+import * as firebase from "firebase";
 
 export interface ProductospedidoId extends Productospedido {
     id: string;
+}
+
+export interface MovilcargaId extends Movilcarga{
+  id: string;
 }
 
 @Component({
@@ -32,8 +37,20 @@ export class DetallepedidoPage implements OnInit {
 
   idPedido: any;
   pedido: any;
+  movil: any;
 
   constructor(private afs: AngularFirestore, private router: Router, public route: ActivatedRoute, public alertController: AlertController) {
+
+
+    firebase.auth().onAuthStateChanged(usuario => {
+      if (usuario){
+        this.movil = usuario;
+      }
+    })
+
+
+
+
     this.pedido = {id:"",nombre: "",apellido: "",calle: "",numero: "",extra: "", total:""}
     this.route.queryParams.subscribe(params => {
       this.idPedido = params['idPedido'];
@@ -81,7 +98,7 @@ export class DetallepedidoPage implements OnInit {
     let pedidoCollection: AngularFirestoreCollection<Pedidofinal>;
     pedidoCollection = this.afs.collection<Pedidofinal>('Pedido');
     pedidoCollection.doc(id).update({estado:'Entregado'});
-    console.log("Cancelado");
+    this.actualizaStock(id);
     this.router.navigate(['/']);
   })
 
@@ -94,6 +111,45 @@ export class DetallepedidoPage implements OnInit {
 
 
   actualizaStock(idPedido){
+    let productosPedidoCollection: AngularFirestoreCollection<Productospedido>;
+    productosPedidoCollection = this.afs.collection<Productospedido>('ProductosPedido', ref => ref.where('idpedido','==',idPedido));
+    let prod: Observable<ProductospedidoId[]>;
+    let cargaMovilCollection: AngularFirestoreCollection<Movilcarga>;
+
+
+    let resta = 0;
+    let idp = 0;
+    var p1 = new Promise((resolve,reject) => {
+      prod = productosPedidoCollection.valueChanges();
+
+      prod.subscribe(p => {
+        resolve(p);
+        console.log(p);
+      })
+    });
+    p1.then((val: Array<Productospedido>) => {
+      val.forEach(data => {
+        console.log(data);
+        console.log(idPedido);
+        console.log(this.movil.uid);
+        cargaMovilCollection = this.afs.collection<Movilcarga>('MovilCarga',ref => ref.where('idproducto','==',data.idproducto).where('idvehiculo','==',this.movil.uid));
+
+
+      var p2 = new Promise((resolve, reject) => {
+      let cargap =  cargaMovilCollection.valueChanges();
+      cargap.subscribe (d => {
+        resolve(d);
+      })
+    });
+    p2.then(val => {
+
+
+      cargaMovilCollection.doc(val[0].id).update({cantidad: val[0].cantidad - data.cantidad})
+
+    });
+
+      })
+    })
 
   }
 

@@ -13,6 +13,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { IonicStorageModule } from '@ionic/storage';
 import { RouterModule, RouteReuseStrategy } from '@angular/router';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { AgmDirectionModule } from 'agm-direction';   // agm-direction
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -37,11 +39,13 @@ firebase.initializeApp(environment.firebase);
   AngularFireStorageModule,
   AgmCoreModule.forRoot({
     apiKey: 'AIzaSyD1ZKWPIHOI5_HuVAKNIjK7J-_6g7EzGvM'
-  })
+  }),
+  AgmDirectionModule
 ],
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

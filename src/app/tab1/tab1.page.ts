@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from "firebase";
 
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument  } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -34,8 +34,9 @@ export class Tab1Page {
   public movilDoc: AngularFirestoreDocument<Movil>;
 
   movil: any;
-
-  constructor(private afs: AngularFirestore, private router: Router, public modalController: ModalController) {
+  lat: any;
+  lng: any;
+  constructor(private afs: AngularFirestore, private router: Router, public modalController: ModalController, private geolocation: Geolocation) {
 
 
 
@@ -60,6 +61,11 @@ export class Tab1Page {
               const id = a.payload.doc.id;
               return {id, ...data}
             })))
+         })
+
+         this.geolocation.getCurrentPosition().then((pos) => {
+           this.lat = pos.coords.latitude;
+           this.lng = pos.coords.longitude;
          })
 
 
@@ -87,6 +93,11 @@ export class Tab1Page {
     console.log(id);
     this.router.navigate(['/detallepedido'],{queryParams:{idPedido:id}});
 
+  }
+
+  rutaPedido(idPedido){
+    console.log(idPedido);
+    this.router.navigate(['/ruta'],{queryParams:{idPedido:idPedido}});
   }
 
 }
